@@ -68,3 +68,19 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}    
+  sonarr:
+    image: "linuxserver/sonarr"
+    container_name: "sonarr"
+    volumes:
+      - ${USERDIR}/docker/sonarr:/config
+      - ${USERDIR}/downloads/complete:/downloads
+      - ${USERDIR}/media/tvshows:/tv
+      - "/etc/localtime:/etc/localtime:ro"
+      - ${USERDIR}/docker/shared:/shared
+    ports:
+        - "8989:8989"
+    restart: always
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}      
