@@ -1,13 +1,13 @@
-mkdir -p ~/downloads
-mkdir -p ~/watch
-mkdir -p ~/media/movies
-mkdir -p ~/media/tvshows
+mkdir -pv ~/downloads
+mkdir -pv ~/watch
+mkdir -pv ~/media/movies
+mkdir -pv ~/media/tvshows
 
-mkdir -p ~/docker/shared
-mkdir -p ~/docker/portainer
-mkdir -p ~/docker/organizr
-mkdir -p ~/docker/transmission
-mkdir -p ~/docker/radarr
-mkdir -p ~/docker/sonarr
-
-#docker-compose -f docker-compose.yml up -d
+mkdir -pv ~/docker/shared
+mkdir -pv ~/docker/portainer
+mkdir -pv ~/docker/organizr
+mkdir -pv ~/docker/transmission
+mkdir -pv ~/docker/radarr
+mkdir -pv ~/docker/sonarr
+mkdir -pv ~/docker/plexms
+mkdir -pv ~/docker/plex_tmp
