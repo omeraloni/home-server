@@ -52,3 +52,19 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --schedule "0 0 4 * * THU" --cleanup # Check for updates every Thursday @ 4AM
+  radarr:
+    image: "linuxserver/radarr"
+    container_name: "radarr"
+    volumes:
+      - ${USERDIR}/docker/radarr:/config
+      - ${USERDIR}/downloads/complete:/downloads
+      - ${USERDIR}/media/movies:/movies
+      - "/etc/localtime:/etc/localtime:ro"
+      - ${USERDIR}/docker/shared:/shared
+    ports:
+      - "7878:7878"
+    restart: always
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}    
