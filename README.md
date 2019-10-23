@@ -32,3 +32,7 @@ $ ./up
 - `up` - Bring up services.
 - `down` - Take down services.
 - `login <service>` - Login to specific service.
+
+## TODO
+[ ] Add [Jackett](https://hub.docker.com/r/linuxserver/jackett/).
+[ ] Read ports from .env file.
