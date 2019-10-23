@@ -6,16 +6,6 @@ DOCKER_ENV="$DOCKER_ROOT/.env"
 mkdir -pv $DOCKER_ROOT
 touch $DOCKER_ENV
 
-echo "PUID=`id -u $USER`" > $DOCKER_ENV
-echo "PGID=`getent group sudo | awk -F: '{printf $3}'`" >> $DOCKER_ENV
-echo "TZ=`cat /etc/timezone`" >> $DOCKER_ENV
-echo "USERDIR=`echo $HOME`" >> $DOCKER_ENV
-read -p 'Plex server claim (https://www.plex.tv/claim/): ' plex_claim
-echo "PLEX_CLAIM=$plex_claim" >> $DOCKER_ENV
-echo "SERVER_ADDR=`hostname -I | awk '{print $1}'`" >> $DOCKER_ENV
-echo "Created .env file:"
-echo "`cat $DOCKER_ENV`"
-
 mkdir -pv $DOCKER_ROOT/shared
 mkdir -pv $DOCKER_ROOT/portainer
 mkdir -pv $DOCKER_ROOT/organizr
@@ -29,3 +19,15 @@ mkdir -pv $HOME/downloads
 mkdir -pv $HOME/watch
 mkdir -pv $HOME/media/movies
 mkdir -pv $HOME/media/tvshows
+
+echo "PUID=`id -u $USER`" > $DOCKER_ENV
+echo "PGID=`getent group sudo | awk -F: '{printf $3}'`" >> $DOCKER_ENV
+echo "TZ=`cat /etc/timezone`" >> $DOCKER_ENV
+echo "USERDIR=`echo $HOME`" >> $DOCKER_ENV
+read -p 'Plex server claim (https://www.plex.tv/claim/): ' plex_claim
+echo "PLEX_CLAIM=$plex_claim" >> $DOCKER_ENV
+echo "SERVER_ADDR=`hostname -I | awk '{print $1}'`" >> $DOCKER_ENV
+echo "Created .env file:"
+echo "`cat $DOCKER_ENV`"
+echo ""
+echo "Done!"
