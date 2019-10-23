@@ -38,4 +38,4 @@ $ ./up
 - [ ] Read ports from .env file.  
 
 ## Credits
-Based on the [awesome tutorial](https://www.smarthomebeginner.com/docker-home-media-server-2018-basic/) written by @htpcBeginner.
+Based on the [awesome tutorial](https://www.smarthomebeginner.com/docker-home-media-server-2018-basic/) written by [@htpcBeginner](https://github.com/htpcBeginner).
