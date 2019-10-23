@@ -1,9 +1,9 @@
 #!/bin/sh
 
-DOCKER_HOME="$HOME/docker"
-DOCKER_ENV="$DOCKER_HOME/.env"
+DOCKER_ROOT="$HOME/docker"
+DOCKER_ENV="$DOCKER_ROOT/.env"
 
-mkdir -pv $DOCKER_HOME
+mkdir -pv $DOCKER_ROOT
 touch $DOCKER_ENV
 
 echo "PUID=`id -u $USER`" > $DOCKER_ENV
@@ -16,14 +16,14 @@ echo "SERVER_ADDR=`hostname -I | awk '{print $1}'`" >> $DOCKER_ENV
 echo "Created .env file:"
 echo "`cat $DOCKER_ENV`"
 
-mkdir -pv $DOCKER_HOME/shared
-mkdir -pv $DOCKER_HOME/portainer
-mkdir -pv $DOCKER_HOME/organizr
-mkdir -pv $DOCKER_HOME/transmission
-mkdir -pv $DOCKER_HOME/radarr
-mkdir -pv $DOCKER_HOME/sonarr
-mkdir -pv $DOCKER_HOME/plexms
-mkdir -pv $DOCKER_HOME/plex_tmp
+mkdir -pv $DOCKER_ROOT/shared
+mkdir -pv $DOCKER_ROOT/portainer
+mkdir -pv $DOCKER_ROOT/organizr
+mkdir -pv $DOCKER_ROOT/transmission
+mkdir -pv $DOCKER_ROOT/radarr
+mkdir -pv $DOCKER_ROOT/sonarr
+mkdir -pv $DOCKER_ROOT/plexms
+mkdir -pv $DOCKER_ROOT/plex_tmp
 
 mkdir -pv $HOME/downloads
 mkdir -pv $HOME/watch
