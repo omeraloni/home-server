@@ -2,7 +2,7 @@
 
 ## Setup
 ```
-# Create required folder and .env file
+# Create required folders and .env file
 $ ./init
 
 # Start Docker
