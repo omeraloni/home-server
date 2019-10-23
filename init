@@ -21,7 +21,7 @@ mkdir -pv $HOME/media/movies
 mkdir -pv $HOME/media/tvshows
 
 echo "PUID=`id -u $USER`" > $DOCKER_ENV
-echo "PGID=`getent group sudo | awk -F: '{printf $3}'`" >> $DOCKER_ENV
+echo "PGID=`getent group docker | awk -F: '{printf $3}'`" >> $DOCKER_ENV
 echo "TZ=`cat /etc/timezone`" >> $DOCKER_ENV
 echo "USERDIR=`echo $HOME`" >> $DOCKER_ENV
 read -p 'Plex server claim (https://www.plex.tv/claim/): ' plex_claim
