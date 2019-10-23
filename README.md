@@ -13,6 +13,12 @@ The following services are included:
 | [Plex](http://plex.tv/)                           | 🎦 Media server            | 32400 |  
 
 
+## Prerequisites
+- [Docker Engine](https://docs.docker.com/install/linux/docker-ce/ubuntu/).
+- [Docker Compose](https://docs.docker.com/compose/install/).
+
+**Tested on Ubuntu Server 18.04.3.**
+
 ## Setup
 ```
 $ ./init
@@ -26,4 +32,3 @@ $ ./up
 - `up` - Bring up services.
 - `down` - Take down services.
 - `login <service>` - Login to specific service.
-
