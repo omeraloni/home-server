@@ -20,14 +20,16 @@ mkdir -pv $HOME/watch
 mkdir -pv $HOME/media/movies
 mkdir -pv $HOME/media/tvshows
 
+# Create .env file for docker-compose
 echo "PUID=`id -u $USER`" > $DOCKER_ENV
 echo "PGID=`getent group docker | awk -F: '{printf $3}'`" >> $DOCKER_ENV
 echo "TZ=`cat /etc/timezone`" >> $DOCKER_ENV
 echo "USERDIR=`echo $HOME`" >> $DOCKER_ENV
 read -p 'Plex server claim (https://www.plex.tv/claim/): ' plex_claim
 echo "PLEX_CLAIM=$plex_claim" >> $DOCKER_ENV
-echo "SERVER_ADDR=`hostname -I | awk '{print $1}'`" >> $DOCKER_ENV
+echo "PLEX_SERVER_ADDR=`hostname -I | awk '{print $1}'`" >> $DOCKER_ENV
+echo ""
 echo "Created .env file:"
-echo "`cat $DOCKER_ENV`"
+echo "`awk -F':' '{ print "...", $1 }' $DOCKER_ENV`"
 echo ""
 echo "Done!"

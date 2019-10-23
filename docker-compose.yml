@@ -109,4 +109,4 @@ services:
       - PLEX_CLAIM=${PLEX_CLAIM}
       - PLEX_UID=${PUID}
       - PLEX_GID=${PGID}
-      - ADVERTISE_IP="http://{SERVER_ADDR}:32400/"      
+      - ADVERTISE_IP="http://{PLEX_SERVER_ADDR}:32400/"      
