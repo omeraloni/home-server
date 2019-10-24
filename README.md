@@ -8,9 +8,9 @@ The following services are included:
 | [Portainer](https://www.portainer.io/)            | 🐋 Docker web UI           | 9000  |  
 | [Organizr](https://github.com/causefx/Organizr)   | 📑 HTPC services organiser | 9001  |  
 | [Transmission](https://transmissionbt.com/)       | 🌊 BitTorrent client       | 9091  |  
-| [Radarr](https://radarr.video/)                   | 🎬 Movies downloader       | 7878  |  
+| [Radarr](https://radarr.video/)                   | 🎟 Movies downloader       | 7878  |  
 | [Sonarr](https://sonarr.tv/)                      | 📺 TV shows downloader     | 8989  |  
-| [Plex](http://plex.tv/)                           | 🎟 Media server            | 32400 |  
+| [Plex](http://plex.tv/)                           | 🎥 Media server            | 32400 |  
 
 
 ## Prerequisites
