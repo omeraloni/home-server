@@ -31,7 +31,7 @@ $ ./up
 - `logs` - show logs of all services.
 - `up` - Bring up services.
 - `down` - Take down services.
-- `login <service>` - Login to specific service.
+- `login <service>` - Shell login to specific service.
 
 ## TODO
 - [ ] Add [Jackett](https://hub.docker.com/r/linuxserver/jackett/).  
