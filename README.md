@@ -10,7 +10,7 @@ The following services are included:
 | [Transmission](https://transmissionbt.com/)       | 🌊 BitTorrent client       | 9091  |  
 | [Radarr](https://radarr.video/)                   | 🎬 Movies downloader       | 7878  |  
 | [Sonarr](https://sonarr.tv/)                      | 📺 TV shows downloader     | 8989  |  
-| [Plex](http://plex.tv/)                           | 🎦 Media server            | 32400 |  
+| [Plex](http://plex.tv/)                           | 🎟 Media server            | 32400 |  
 
 
 ## Prerequisites
