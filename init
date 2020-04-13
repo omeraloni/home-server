@@ -1,7 +1,7 @@
 #!/bin/sh
 
 DOCKER_ROOT="$HOME/docker"
-DOCKER_ENV="$DOCKER_ROOT/.env"
+DOCKER_ENV=".env"
 
 mkdir -pv $DOCKER_ROOT
 touch $DOCKER_ENV
@@ -14,6 +14,7 @@ mkdir -pv $DOCKER_ROOT/radarr
 mkdir -pv $DOCKER_ROOT/sonarr
 mkdir -pv $DOCKER_ROOT/plexms
 mkdir -pv $DOCKER_ROOT/plex_tmp
+mkdir -pv $DOCKER_ROOT/jackett
 
 mkdir -pv $HOME/downloads
 mkdir -pv $HOME/watch
@@ -25,6 +26,7 @@ echo "PUID=`id -u $USER`" > $DOCKER_ENV
 echo "PGID=`getent group docker | awk -F: '{printf $3}'`" >> $DOCKER_ENV
 echo "TZ=`cat /etc/timezone`" >> $DOCKER_ENV
 echo "USERDIR=`echo $HOME`" >> $DOCKER_ENV
+echo "REMOTEDIR=/mnt/media" >> $DOCKER_ENV
 read -p 'Plex server claim (https://www.plex.tv/claim/): ' plex_claim
 echo "PLEX_CLAIM=$plex_claim" >> $DOCKER_ENV
 echo "PLEX_SERVER_ADDR=`hostname -I | awk '{print $1}'`" >> $DOCKER_ENV

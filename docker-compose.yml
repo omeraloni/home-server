@@ -13,19 +13,19 @@ services:
       - ${USERDIR}/docker/shared:/shared
     environment:
       - TZ=${TZ}
-  organizr:
-    container_name: organizr
-    restart: always
-    image: lsiocommunity/organizr
-    volumes:
-      - ${USERDIR}/docker/organizr:/config
-      - ${USERDIR}/docker/shared:/shared
-    ports:
-      - "9001:80"
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}      
+  # organizr:
+  #   container_name: organizr
+  #   restart: always
+  #   image: lsiocommunity/organizr
+  #   volumes:
+  #     - ${USERDIR}/docker/organizr:/config
+  #     - ${USERDIR}/docker/shared:/shared
+  #   ports:
+  #     - "9001:80"
+  #   environment:
+  #     - PUID=${PUID}
+  #     - PGID=${PGID}
+  #     - TZ=${TZ}      
   transmission:
     image: linuxserver/transmission
     container_name: transmission
@@ -38,8 +38,8 @@ services:
       #- PASS=password #optional
     volumes:
       - ${USERDIR}/docker/transmission:/config
-      - ${USERDIR}/downloads:/downloads
-      - ${USERDIR}/watch:/watch
+      - ${REMOTEDIR}/downloads/complete:/downloads
+      - ${REMOTEDIR}/watch:/watch
     ports:
       - 9091:9091
       - 51413:51413
@@ -57,8 +57,8 @@ services:
     container_name: "radarr"
     volumes:
       - ${USERDIR}/docker/radarr:/config
-      - ${USERDIR}/downloads/complete:/downloads
-      - ${USERDIR}/media/movies:/movies
+      - ${REMOTEDIR}/downloads/complete:/downloads
+      - ${REMOTEDIR}/movies:/movies
       - "/etc/localtime:/etc/localtime:ro"
       - ${USERDIR}/docker/shared:/shared
     ports:
@@ -73,8 +73,8 @@ services:
     container_name: "sonarr"
     volumes:
       - ${USERDIR}/docker/sonarr:/config
-      - ${USERDIR}/downloads/complete:/downloads
-      - ${USERDIR}/media/tvshows:/tv
+      - ${REMOTEDIR}/downloads/complete:/downloads
+      - ${REMOTEDIR}/tvshows:/tv
       - "/etc/localtime:/etc/localtime:ro"
       - ${USERDIR}/docker/shared:/shared
     ports:
@@ -84,29 +84,43 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}      
-  plexms:
-    container_name: plexms
-    restart: always
-    image: plexinc/pms-docker
-    volumes:
-      - ${USERDIR}/docker/plexms:/config
-      - ${USERDIR}/docker/plex_tmp:/transcode
-      - ${USERDIR}/media:/media
-      - ${USERDIR}/docker/shared:/shared
-    ports:
-      - "32400:32400/tcp"
-      - "3005:3005/tcp"
-      - "8324:8324/tcp"
-      - "32469:32469/tcp"
-      - "1900:1900/udp"
-      - "32410:32410/udp"
-      - "32412:32412/udp"
-      - "32413:32413/udp"
-      - "32414:32414/udp"
+  # plexms:
+  #   container_name: plexms
+  #   restart: always
+  #   image: plexinc/pms-docker
+  #   volumes:
+  #     - ${USERDIR}/docker/plexms:/config
+  #     - ${USERDIR}/docker/plex_tmp:/transcode
+  #     - ${USERDIR}/media:/media
+  #     - ${USERDIR}/docker/shared:/shared
+  #   ports:
+  #     - "32400:32400/tcp"
+  #     - "3005:3005/tcp"
+  #     - "8324:8324/tcp"
+  #     - "32469:32469/tcp"
+  #     - "1900:1900/udp"
+  #     - "32410:32410/udp"
+  #     - "32412:32412/udp"
+  #     - "32413:32413/udp"
+  #     - "32414:32414/udp"
+  #   environment:
+  #     - TZ=${TZ}
+  #     - HOSTNAME="Docker Plex"
+  #     - PLEX_CLAIM=${PLEX_CLAIM}
+  #     - PLEX_UID=${PUID}
+  #     - PLEX_GID=${PGID}
+  #     - ADVERTISE_IP="http://{PLEX_SERVER_ADDR}:32400/"      
+  jackett:
+    image: linuxserver/jackett
+    container_name: jackett
     environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
       - TZ=${TZ}
-      - HOSTNAME="Docker Plex"
-      - PLEX_CLAIM=${PLEX_CLAIM}
-      - PLEX_UID=${PUID}
-      - PLEX_GID=${PGID}
-      - ADVERTISE_IP="http://{PLEX_SERVER_ADDR}:32400/"      
+#      - RUN_OPTS=run options here #optional
+    volumes:
+      - ${USERDIR}/docker/sonarr:/config
+      - ${REMOTEDIR}/downloads/complete:/downloads
+    ports:
+      - 9117:9117
+    restart: unless-stopped
