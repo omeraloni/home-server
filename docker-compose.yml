@@ -13,7 +13,7 @@ services:
       - ${USERDIR}/docker/shared:/shared
     environment:
       - TZ=${TZ}
-  # organizr:
+  # organizr: # replaced with Heimdall
   #   container_name: organizr
   #   restart: always
   #   image: lsiocommunity/organizr
@@ -83,33 +83,21 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-      - TZ=${TZ}      
-  # plexms:
-  #   container_name: plexms
-  #   restart: always
-  #   image: plexinc/pms-docker
-  #   volumes:
-  #     - ${USERDIR}/docker/plexms:/config
-  #     - ${USERDIR}/docker/plex_tmp:/transcode
-  #     - ${USERDIR}/media:/media
-  #     - ${USERDIR}/docker/shared:/shared
-  #   ports:
-  #     - "32400:32400/tcp"
-  #     - "3005:3005/tcp"
-  #     - "8324:8324/tcp"
-  #     - "32469:32469/tcp"
-  #     - "1900:1900/udp"
-  #     - "32410:32410/udp"
-  #     - "32412:32412/udp"
-  #     - "32413:32413/udp"
-  #     - "32414:32414/udp"
-  #   environment:
-  #     - TZ=${TZ}
-  #     - HOSTNAME="Docker Plex"
-  #     - PLEX_CLAIM=${PLEX_CLAIM}
-  #     - PLEX_UID=${PUID}
-  #     - PLEX_GID=${PGID}
-  #     - ADVERTISE_IP="http://{PLEX_SERVER_ADDR}:32400/"      
+      - TZ=${TZ}        
+  plex:
+    image: linuxserver/plex
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - VERSION=docker
+#      - UMASK_SET=022 #optional
+    volumes:
+     - ${USERDIR}/docker/plexms:/config
+     - ${REMOTEDIR}/movies:/movies
+     - ${REMOTEDIR}/tvshows:/tv
+    restart: unless-stopped
   jackett:
     image: linuxserver/jackett
     container_name: jackett
@@ -124,3 +112,59 @@ services:
     ports:
       - 9117:9117
     restart: unless-stopped
+  bazarr:
+    image: linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+#      - UMASK_SET=022 #optional
+    volumes:
+      - ${USERDIR}/docker/bazarr:/config
+      - ${REMOTEDIR}/movies:/movies
+      - ${REMOTEDIR}/tvshows:/tv
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+#   code-server: # x86 only
+#     image: linuxserver/code-server
+#     container_name: code-server
+#     environment:
+#       - PUID=${PUID}
+#       - PGID=${PGID}
+#       - TZ=${TZ}
+#       - PASSWORD=${WEBUI_PW} #optional
+#       - SUDO_PASSWORD=${SUDO_PW} #optional
+#     volumes:
+#       - ${USERDIR}/docker/code-server:/config
+#       - ${USERDIR}/docker/shared:/shared
+#     ports:
+#       - 8443:8443
+#     restart: unless-stopped    
+  heimdall:
+    image: linuxserver/heimdall
+    container_name: heimdall
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ${USERDIR}/docker/heimdall:/config
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+  netdata:
+    image: netdata/netdata
+    hostname: rpi2.local # set to fqdn of host
+    ports:
+      - 19999:19999
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro    

@@ -8,13 +8,14 @@ touch $DOCKER_ENV
 
 mkdir -pv $DOCKER_ROOT/shared
 mkdir -pv $DOCKER_ROOT/portainer
-mkdir -pv $DOCKER_ROOT/organizr
+#mkdir -pv $DOCKER_ROOT/organizr
 mkdir -pv $DOCKER_ROOT/transmission
 mkdir -pv $DOCKER_ROOT/radarr
 mkdir -pv $DOCKER_ROOT/sonarr
 mkdir -pv $DOCKER_ROOT/plexms
-mkdir -pv $DOCKER_ROOT/plex_tmp
 mkdir -pv $DOCKER_ROOT/jackett
+mkdir -pv $DOCKER_ROOT/bazarr
+mkdir -pv $DOCKER_ROOT/heimdall
 
 mkdir -pv $HOME/downloads
 mkdir -pv $HOME/watch
